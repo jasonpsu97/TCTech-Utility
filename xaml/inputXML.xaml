@@ -11,7 +11,7 @@
         Height="Auto"
         MinWidth="800"
         MinHeight="600"
-        Title="WinUtil">
+        Title="Twisted Computing Tech Utility">
     <WindowChrome.WindowChrome>
         <WindowChrome CaptionHeight="0" CornerRadius="10"/>
     </WindowChrome.WindowChrome>
@@ -1063,6 +1063,14 @@
                         </TextBlock>
                     </ToggleButton.Content>
                 </ToggleButton>
+                <ToggleButton Style="{StaticResource TabToggleButton}" Margin="0,0,5,0" Height="{DynamicResource TabButtonHeight}" Width="Auto" MinWidth="{DynamicResource TabButtonWidth}"
+                    Background="{DynamicResource ButtonConfigBackgroundColor}" Foreground="{DynamicResource ButtonConfigForegroundColor}" FontWeight="Bold" Name="WPFTab7BT">
+                    <ToggleButton.Content>
+                        <TextBlock FontSize="{DynamicResource TabButtonFontSize}" Background="Transparent" Foreground="{DynamicResource ButtonConfigForegroundColor}">
+                            <Underline>N</Underline>etwork
+                        </TextBlock>
+                    </ToggleButton.Content>
+                </ToggleButton>
             </StackPanel>
 
             <!-- Search Bar and Action Buttons -->
@@ -1909,6 +1917,60 @@
                         </WrapPanel>
                     </Border>
                 </Grid>
+            </TabItem>
+            <TabItem Header="Network" Visibility="Collapsed" Name="WPFTab7">
+                <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Margin="{DynamicResource TabContentMargin}">
+                    <Grid Background="Transparent" MaxWidth="1200" HorizontalAlignment="Center">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <StackPanel Grid.Row="0" Margin="10,10,10,14">
+                            <TextBlock Text="Twisted Computing Network Tools"
+                                       FontSize="24"
+                                       FontWeight="Bold"
+                                       Foreground="{DynamicResource MainForegroundColor}"/>
+                            <TextBlock Text="Common network diagnostics and technician quick fixes. The ARP scanner accepts CIDR ranges such as 192.168.1.0/24 or 172.24.0.1/26."
+                                       Margin="0,6,0,0"
+                                       FontSize="13"
+                                       TextWrapping="Wrap"
+                                       Foreground="{DynamicResource MainForegroundColor}"/>
+                        </StackPanel>
+
+                        <UniformGrid Grid.Row="1" Columns="2">
+                            <Border Style="{StaticResource BorderStyle}" Padding="16" Margin="8">
+                                <StackPanel>
+                                    <TextBlock Text="Network Discovery" FontSize="19" FontWeight="Bold" Foreground="{DynamicResource MainForegroundColor}" Margin="0,0,0,5"/>
+                                    <TextBlock Text="Scan a subnet, inspect adapter configuration, test the active gateway, or clear cached ARP entries."
+                                               TextWrapping="Wrap" Foreground="{DynamicResource MainForegroundColor}" Margin="0,0,0,12"/>
+                                    <Button Name="WPFTCTechARPScanner" Content="ARP / CIDR Scanner" Margin="3" Height="42"/>
+                                    <Button Name="WPFTCTechIPConfig" Content="Show Full IP Configuration" Margin="3" Height="42"/>
+                                    <Button Name="WPFTCTechPingGateway" Content="Ping Default Gateway" Margin="3" Height="42"/>
+                                    <Button Name="WPFTCTechClearARP" Content="Clear ARP Cache" Margin="3" Height="42"/>
+                                </StackPanel>
+                            </Border>
+
+                            <Border Style="{StaticResource BorderStyle}" Padding="16" Margin="8">
+                                <StackPanel>
+                                    <TextBlock Text="Quick Fixes" FontSize="19" FontWeight="Bold" Foreground="{DynamicResource MainForegroundColor}" Margin="0,0,0,5"/>
+                                    <TextBlock Text="Run common repair actions without opening separate administrative consoles."
+                                               TextWrapping="Wrap" Foreground="{DynamicResource MainForegroundColor}" Margin="0,0,0,12"/>
+                                    <Button Name="WPFTCTechFlushDNS" Content="Flush DNS Cache" Margin="3" Height="42"/>
+                                    <Button Name="WPFTCTechRenewDHCP" Content="Release / Renew DHCP" Margin="3" Height="42"/>
+                                    <Button Name="WPFTCTechRestartExplorer" Content="Restart Windows Explorer" Margin="3" Height="42"/>
+                                    <Button Name="WPFTCTechOpenAdapters" Content="Open Network Connections" Margin="3" Height="42"/>
+                                </StackPanel>
+                            </Border>
+                        </UniformGrid>
+
+                        <Border Grid.Row="2" Style="{StaticResource BorderStyle}" Margin="8,12,8,8" Padding="12">
+                            <TextBlock Text="Note: Release / Renew DHCP temporarily interrupts network connectivity. The scanner limits a single run to 65,536 addresses to prevent accidental extremely large scans."
+                                       TextWrapping="Wrap" Foreground="{DynamicResource MainForegroundColor}"/>
+                        </Border>
+                    </Grid>
+                </ScrollViewer>
             </TabItem>
         </TabControl>
 

@@ -93,6 +93,14 @@ function Invoke-WPFButton {
                 $sync.Form.WindowState = [Windows.WindowState]::Normal
             }
         }
+        "WPFTCTechARPScanner" {Invoke-WPFTCTechARPScanner}
+        "WPFTCTechIPConfig" {Invoke-WPFTCTechIPConfig}
+        "WPFTCTechPingGateway" {Invoke-WPFTCTechPingGateway}
+        "WPFTCTechClearARP" {Invoke-WPFTCTechClearARP}
+        "WPFTCTechFlushDNS" {Invoke-WPFTCTechFlushDNS}
+        "WPFTCTechRenewDHCP" {Invoke-WPFTCTechRenewDHCP}
+        "WPFTCTechRestartExplorer" {Invoke-WPFTCTechRestartExplorer}
+        "WPFTCTechOpenAdapters" {Invoke-WPFTCTechOpenAdapters}
         "WPFselectedAppsButton" {$sync.selectedAppsPopup.IsOpen = -not $sync.selectedAppsPopup.IsOpen}
     }
 }

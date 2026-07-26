@@ -1,0 +1,20 @@
+TWISTED COMPUTING TECH UTILITY v0.3
+
+WHAT CHANGED
+- Added the Twisted Computing logo splash screen.
+- Added the logo as the main application/taskbar icon.
+- Added a ready-made GitHub launcher CMD file.
+- Corrected administrator relaunching so the custom TCTech build reloads instead of the original WinUtil.
+
+INSTALL INTO YOUR REPOSITORY
+1. Close the utility and GitHub Desktop.
+2. Copy everything from the TCTech-fixed folder into your local TCTech-Utility repository.
+3. Replace files when Windows asks.
+4. Open PowerShell in the repository and run: .\Compile.ps1
+5. Test locally with: powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\winutil.ps1
+6. Commit and push the changed files.
+7. Merge feature/jasontech-rebrand into main and push main.
+
+ANY-MACHINE LAUNCHER
+Use Launch-Twisted-Computing-Tech-Utility.cmd after main contains the compiled winutil.ps1.
+The repository must be public for this no-login launcher.

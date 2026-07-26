@@ -1,3 +1,75 @@
+
+# Twisted Computing branded splash screen
+[void][System.Reflection.Assembly]::LoadWithPartialName('presentationframework')
+[void][System.Reflection.Assembly]::LoadWithPartialName('windowsbase')
+
+$TCTechSplash = $null
+try {
+    $logoBytes = [Convert]::FromBase64String($TCTechLogoBase64)
+    $logoStream = New-Object IO.MemoryStream(,$logoBytes)
+    $logoBitmap = New-Object Windows.Media.Imaging.BitmapImage
+    $logoBitmap.BeginInit()
+    $logoBitmap.CacheOption = [Windows.Media.Imaging.BitmapCacheOption]::OnLoad
+    $logoBitmap.StreamSource = $logoStream
+    $logoBitmap.EndInit()
+    $logoBitmap.Freeze()
+    $logoStream.Dispose()
+
+    $TCTechSplash = New-Object Windows.Window
+    $TCTechSplash.Title = 'Twisted Computing Tech Utility'
+    $TCTechSplash.Width = 560
+    $TCTechSplash.Height = 650
+    $TCTechSplash.WindowStartupLocation = 'CenterScreen'
+    $TCTechSplash.WindowStyle = 'None'
+    $TCTechSplash.ResizeMode = 'NoResize'
+    $TCTechSplash.Topmost = $true
+    $TCTechSplash.ShowInTaskbar = $false
+    $TCTechSplash.Background = [Windows.Media.Brushes]::Black
+    $TCTechSplash.AllowsTransparency = $false
+
+    $panel = New-Object Windows.Controls.StackPanel
+    $panel.HorizontalAlignment = 'Center'
+    $panel.VerticalAlignment = 'Center'
+
+    $logo = New-Object Windows.Controls.Image
+    $logo.Source = $logoBitmap
+    $logo.Width = 440
+    $logo.Height = 440
+    $logo.Stretch = 'Uniform'
+    $logo.Margin = '20,10,20,5'
+    $panel.Children.Add($logo) | Out-Null
+
+    $title = New-Object Windows.Controls.TextBlock
+    $title.Text = 'TWISTED COMPUTING'
+    $title.Foreground = [Windows.Media.Brushes]::White
+    $title.FontSize = 28
+    $title.FontWeight = 'Bold'
+    $title.HorizontalAlignment = 'Center'
+    $title.Margin = '0,0,0,4'
+    $panel.Children.Add($title) | Out-Null
+
+    $subtitle = New-Object Windows.Controls.TextBlock
+    $subtitle.Text = 'Tech Utility'
+    $subtitle.Foreground = [Windows.Media.Brushes]::DarkOrange
+    $subtitle.FontSize = 22
+    $subtitle.HorizontalAlignment = 'Center'
+    $subtitle.Margin = '0,0,0,16'
+    $panel.Children.Add($subtitle) | Out-Null
+
+    $status = New-Object Windows.Controls.TextBlock
+    $status.Text = 'Loading technician tools...'
+    $status.Foreground = [Windows.Media.Brushes]::LightGray
+    $status.FontSize = 14
+    $status.HorizontalAlignment = 'Center'
+    $panel.Children.Add($status) | Out-Null
+
+    $TCTechSplash.Content = $panel
+    $TCTechSplash.Show()
+    $TCTechSplash.Dispatcher.Invoke([Windows.Threading.DispatcherPriority]::Render, [action]{})
+} catch {
+    Write-Host "Splash screen could not be displayed: $($_.Exception.Message)" -ForegroundColor DarkGray
+}
+
 Write-Host @"
     CCCCCCCCCCCCCTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
  CCC::::::::::::CT:::::::::::::::::::::TT:::::::::::::::::::::T
@@ -64,7 +136,6 @@ if ($Config) {
     return
 }
 
-[void][System.Reflection.Assembly]::LoadWithPartialName('presentationframework')
 [xml]$XAML = $inputXML
 
 # Read the XAML file
@@ -72,6 +143,7 @@ $readerOperationSuccessful = $false # There's more cases of failure then success
 $reader = (New-Object System.Xml.XmlNodeReader $xaml)
 try {
     $sync["Form"] = [Windows.Markup.XamlReader]::Load( $reader )
+    if ($logoBitmap) { $sync["Form"].Icon = $logoBitmap }
     $readerOperationSuccessful = $true
 } catch [System.Management.Automation.MethodInvocationException] {
     Write-Host "We ran into a problem with the XAML code.  Check the syntax for this control..." -ForegroundColor Red
@@ -520,5 +592,8 @@ $sync["WPFWin11ISOCleanResetButton"].Add_Click({
 
 # ──────────────────────────────────────────────────────────────────────────────
 
+if ($TCTechSplash) {
+    try { $TCTechSplash.Close() } catch {}
+}
 $sync["Form"].ShowDialog() | out-null
 Stop-Transcript

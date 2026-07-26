@@ -37,6 +37,9 @@ $script += "`$inputXML = @'`r`n$xaml`r`n'@"
 $autounattendXml = Get-Content -Path tools\autounattend.xml -Raw
 $script += "`$WinUtilAutounattendXml = @'`r`n$autounattendXml`r`n'@"
 
+$logoBase64 = [Convert]::ToBase64String([IO.File]::ReadAllBytes((Join-Path $PSScriptRoot 'assets\tctech-logo.png')))
+$script += "`$TCTechLogoBase64 = '$logoBase64'"
+
 $script += Get-Content -Path scripts\main.ps1 -Raw
 
 Set-Content -Path winutil.ps1 -Value $script

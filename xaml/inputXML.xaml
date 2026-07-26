@@ -1932,7 +1932,7 @@
                                        FontSize="24"
                                        FontWeight="Bold"
                                        Foreground="{DynamicResource MainForegroundColor}"/>
-                            <TextBlock Text="Common network diagnostics and technician quick fixes. The ARP scanner accepts CIDR ranges such as 192.168.1.0/24 or 172.24.0.1/26."
+                            <TextBlock Text="Common network diagnostics and technician quick fixes. Launch the full standalone Twisted Computing ARP Scanner directly from the utility."
                                        Margin="0,6,0,0"
                                        FontSize="13"
                                        TextWrapping="Wrap"
@@ -1943,9 +1943,9 @@
                             <Border Style="{StaticResource BorderStyle}" Padding="16" Margin="8">
                                 <StackPanel>
                                     <TextBlock Text="Network Discovery" FontSize="19" FontWeight="Bold" Foreground="{DynamicResource MainForegroundColor}" Margin="0,0,0,5"/>
-                                    <TextBlock Text="Scan a subnet, inspect adapter configuration, test the active gateway, or clear cached ARP entries."
+                                    <TextBlock Text="Launch the full multi-adapter CIDR scanner, inspect adapter configuration, test the active gateway, or clear cached ARP entries."
                                                TextWrapping="Wrap" Foreground="{DynamicResource MainForegroundColor}" Margin="0,0,0,12"/>
-                                    <Button Name="WPFTCTechARPScanner" Content="ARP / CIDR Scanner" Margin="3" Height="42"/>
+                                    <Button Name="WPFTCTechARPScanner" Content="Launch Full ARP Scanner" Margin="3" Height="42"/>
                                     <Button Name="WPFTCTechIPConfig" Content="Show Full IP Configuration" Margin="3" Height="42"/>
                                     <Button Name="WPFTCTechPingGateway" Content="Ping Default Gateway" Margin="3" Height="42"/>
                                     <Button Name="WPFTCTechClearARP" Content="Clear ARP Cache" Margin="3" Height="42"/>
@@ -1966,7 +1966,7 @@
                         </UniformGrid>
 
                         <Border Grid.Row="2" Style="{StaticResource BorderStyle}" Margin="8,12,8,8" Padding="12">
-                            <TextBlock Text="Note: Release / Renew DHCP temporarily interrupts network connectivity. The scanner limits a single run to 65,536 addresses to prevent accidental extremely large scans."
+                            <TextBlock Text="Note: Release / Renew DHCP temporarily interrupts network connectivity. The ARP scanner opens in its own console and includes Quick Scan, MSP Survey, adapter selection, CIDR support, progress display, vendor lookup, copying, and optional CSV export."
                                        TextWrapping="Wrap" Foreground="{DynamicResource MainForegroundColor}"/>
                         </Border>
                     </Grid>

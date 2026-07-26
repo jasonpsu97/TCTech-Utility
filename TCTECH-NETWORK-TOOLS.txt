@@ -1,0 +1,15 @@
+Twisted Computing Tech Utility - Network Tools v0.2
+
+Changes in this build:
+- Replaced the experimental embedded WPF CIDR scanner.
+- The Network tab now launches Network ARP Scanner v8 as a standalone console tool.
+- The scanner is embedded inside the compiled PowerShell utility and extracted to:
+  %LOCALAPPDATA%\TwistedComputing\TechUtility\Tools
+- No separate BAT file needs to remain beside winutil.ps1.
+- Existing IP configuration, gateway ping, ARP clear, DNS flush, DHCP renew,
+  Explorer restart, and Network Connections buttons remain available.
+
+Local testing:
+1. Run .\Compile.ps1
+2. Run: powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\winutil.ps1
+3. Open Network and click Launch Full ARP Scanner.

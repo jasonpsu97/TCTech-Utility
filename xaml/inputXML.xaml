@@ -1419,6 +1419,7 @@
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
 
                         <StackPanel Grid.Row="0" Margin="10,10,10,14">
@@ -1918,7 +1919,7 @@
                     </Border>
                 </Grid>
             </TabItem>
-            <TabItem Header="Network" Visibility="Collapsed" Name="WPFTab7">
+            <TabItem Header="TC Tools" Visibility="Collapsed" Name="WPFTab7">
                 <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Margin="{DynamicResource TabContentMargin}">
                     <Grid Background="Transparent" MaxWidth="1200" HorizontalAlignment="Center">
                         <Grid.RowDefinitions>
@@ -1928,11 +1929,11 @@
                         </Grid.RowDefinitions>
 
                         <StackPanel Grid.Row="0" Margin="10,10,10,14">
-                            <TextBlock Text="Twisted Computing Network Tools"
+                            <TextBlock Text="Twisted Computing Technician Tools"
                                        FontSize="24"
                                        FontWeight="Bold"
                                        Foreground="{DynamicResource MainForegroundColor}"/>
-                            <TextBlock Text="Common network diagnostics and technician quick fixes. Launch the full standalone Twisted Computing ARP Scanner directly from the utility."
+                            <TextBlock Text="Fast network diagnostics, Windows personalization, and common technician setup shortcuts in one place."
                                        Margin="0,6,0,0"
                                        FontSize="13"
                                        TextWrapping="Wrap"
@@ -1965,8 +1966,38 @@
                             </Border>
                         </UniformGrid>
 
-                        <Border Grid.Row="2" Style="{StaticResource BorderStyle}" Margin="8,12,8,8" Padding="12">
-                            <TextBlock Text="Note: Release / Renew DHCP temporarily interrupts network connectivity. The ARP scanner opens in its own console and includes Quick Scan, MSP Survey, adapter selection, CIDR support, progress display, vendor lookup, copying, and optional CSV export."
+                        <UniformGrid Grid.Row="2" Columns="2">
+                            <Border Style="{StaticResource BorderStyle}" Padding="16" Margin="8">
+                                <StackPanel>
+                                    <TextBlock Text="Windows Appearance" FontSize="19" FontWeight="Bold" Foreground="{DynamicResource MainForegroundColor}" Margin="0,0,0,5"/>
+                                    <TextBlock Text="Quickly apply the Windows appearance settings commonly used during workstation setup."
+                                               TextWrapping="Wrap" Foreground="{DynamicResource MainForegroundColor}" Margin="0,0,0,12"/>
+                                    <Button Name="WPFTCTechDarkMode" Content="Use Dark Mode" Margin="3" Height="42"/>
+                                    <Button Name="WPFTCTechLightMode" Content="Use Light Mode" Margin="3" Height="42"/>
+                                    <Button Name="WPFTCTechShowExtensions" Content="Show File Extensions" Margin="3" Height="42"/>
+                                    <Button Name="WPFTCTechExplorerThisPC" Content="Open Explorer to This PC" Margin="3" Height="42"/>
+                                    <Button Name="WPFTCTechTaskbarLeft" Content="Align Taskbar Left" Margin="3" Height="42"/>
+                                    <Button Name="WPFTCTechDisableWidgets" Content="Hide Windows Widgets" Margin="3" Height="42"/>
+                                </StackPanel>
+                            </Border>
+
+                            <Border Style="{StaticResource BorderStyle}" Padding="16" Margin="8">
+                                <StackPanel>
+                                    <TextBlock Text="Power and Machine Setup" FontSize="19" FontWeight="Bold" Foreground="{DynamicResource MainForegroundColor}" Margin="0,0,0,5"/>
+                                    <TextBlock Text="Apply practical power presets or jump directly to commonly used Windows settings pages."
+                                               TextWrapping="Wrap" Foreground="{DynamicResource MainForegroundColor}" Margin="0,0,0,12"/>
+                                    <Button Name="WPFTCTechPowerBalanced" Content="Balanced Power Plan" Margin="3" Height="42"/>
+                                    <Button Name="WPFTCTechPowerHigh" Content="High Performance Plan" Margin="3" Height="42"/>
+                                    <Button Name="WPFTCTechNoSleepAC" Content="Never Sleep While Plugged In" Margin="3" Height="42"/>
+                                    <Button Name="WPFTCTechDisplay30" Content="Display Off After 30 Minutes" Margin="3" Height="42"/>
+                                    <Button Name="WPFTCTechOpenPower" Content="Open Power and Sleep Settings" Margin="3" Height="42"/>
+                                    <Button Name="WPFTCTechOpenPersonalization" Content="Open Personalization Settings" Margin="3" Height="42"/>
+                                </StackPanel>
+                            </Border>
+                        </UniformGrid>
+
+                        <Border Grid.Row="3" Style="{StaticResource BorderStyle}" Margin="8,12,8,8" Padding="12">
+                            <TextBlock Text="Note: Release / Renew DHCP temporarily interrupts network connectivity. Appearance changes may require Windows Explorer to restart or the user to sign out before every part of the interface updates."
                                        TextWrapping="Wrap" Foreground="{DynamicResource MainForegroundColor}"/>
                         </Border>
                     </Grid>

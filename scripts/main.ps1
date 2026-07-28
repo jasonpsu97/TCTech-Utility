@@ -88,8 +88,8 @@ CC:::::::::::::::C       T:::::::::T            T:::::::::T
 CCC::::::::::::C         T:::::::::T            T:::::::::T
   CCCCCCCCCCCCC          TTTTTTTTTTT            TTTTTTTTTTT
 
-====Chris Titus Tech=====
-=====Windows Toolbox=====
+=== TWISTED COMPUTING ===
+====== TECH UTILITY ======
 "@
 
 # Load the configuration files

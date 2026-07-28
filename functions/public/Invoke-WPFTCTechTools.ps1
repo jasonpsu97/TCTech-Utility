@@ -141,3 +141,87 @@ function Invoke-WPFTCTechRestartExplorer {
 function Invoke-WPFTCTechOpenAdapters {
     Start-Process control.exe -ArgumentList 'ncpa.cpl'
 }
+
+function Show-WPFTCTechSuccess {
+    param([string]$Message, [string]$Title = 'Twisted Computing Tech Utility')
+    [System.Windows.MessageBox]::Show($Message, $Title, 'OK', 'Information') | Out-Null
+}
+
+function Restart-WPFTCTechExplorerSilently {
+    Stop-Process -Name explorer -Force -ErrorAction SilentlyContinue
+    Start-Sleep -Milliseconds 400
+    Start-Process explorer.exe
+}
+
+function Invoke-WPFTCTechDarkMode {
+    $path = 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize'
+    New-Item $path -Force | Out-Null
+    Set-ItemProperty $path AppsUseLightTheme 0 -Type DWord
+    Set-ItemProperty $path SystemUsesLightTheme 0 -Type DWord
+    Restart-WPFTCTechExplorerSilently
+    Show-WPFTCTechSuccess 'Dark mode was applied.' 'Windows Appearance'
+}
+
+function Invoke-WPFTCTechLightMode {
+    $path = 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize'
+    New-Item $path -Force | Out-Null
+    Set-ItemProperty $path AppsUseLightTheme 1 -Type DWord
+    Set-ItemProperty $path SystemUsesLightTheme 1 -Type DWord
+    Restart-WPFTCTechExplorerSilently
+    Show-WPFTCTechSuccess 'Light mode was applied.' 'Windows Appearance'
+}
+
+function Invoke-WPFTCTechShowExtensions {
+    $path = 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced'
+    Set-ItemProperty $path HideFileExt 0 -Type DWord
+    Restart-WPFTCTechExplorerSilently
+    Show-WPFTCTechSuccess 'File extensions are now shown.' 'File Explorer'
+}
+
+function Invoke-WPFTCTechExplorerThisPC {
+    $path = 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced'
+    Set-ItemProperty $path LaunchTo 1 -Type DWord
+    Restart-WPFTCTechExplorerSilently
+    Show-WPFTCTechSuccess 'File Explorer will now open to This PC.' 'File Explorer'
+}
+
+function Invoke-WPFTCTechTaskbarLeft {
+    $path = 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced'
+    Set-ItemProperty $path TaskbarAl 0 -Type DWord
+    Restart-WPFTCTechExplorerSilently
+    Show-WPFTCTechSuccess 'The Windows 11 taskbar was aligned to the left.' 'Taskbar'
+}
+
+function Invoke-WPFTCTechDisableWidgets {
+    $path = 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced'
+    Set-ItemProperty $path TaskbarDa 0 -Type DWord
+    Restart-WPFTCTechExplorerSilently
+    Show-WPFTCTechSuccess 'The Widgets button was hidden.' 'Taskbar'
+}
+
+function Invoke-WPFTCTechPowerBalanced {
+    & powercfg.exe /setactive SCHEME_BALANCED | Out-Null
+    Show-WPFTCTechSuccess 'The Balanced power plan is now active.' 'Power Settings'
+}
+
+function Invoke-WPFTCTechPowerHigh {
+    & powercfg.exe /setactive SCHEME_MIN | Out-Null
+    if ($LASTEXITCODE -ne 0) {
+        & powercfg.exe -duplicatescheme SCHEME_MIN | Out-Null
+        & powercfg.exe /setactive SCHEME_MIN | Out-Null
+    }
+    Show-WPFTCTechSuccess 'The High Performance power plan is now active.' 'Power Settings'
+}
+
+function Invoke-WPFTCTechNoSleepAC {
+    & powercfg.exe /change standby-timeout-ac 0 | Out-Null
+    Show-WPFTCTechSuccess 'Sleep while plugged in has been disabled. Battery settings were not changed.' 'Power Settings'
+}
+
+function Invoke-WPFTCTechDisplay30 {
+    & powercfg.exe /change monitor-timeout-ac 30 | Out-Null
+    Show-WPFTCTechSuccess 'The plugged-in display timeout is now 30 minutes.' 'Power Settings'
+}
+
+function Invoke-WPFTCTechOpenPower { Start-Process 'ms-settings:powersleep' }
+function Invoke-WPFTCTechOpenPersonalization { Start-Process 'ms-settings:personalization' }

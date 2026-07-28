@@ -101,6 +101,18 @@ function Invoke-WPFButton {
         "WPFTCTechRenewDHCP" {Invoke-WPFTCTechRenewDHCP}
         "WPFTCTechRestartExplorer" {Invoke-WPFTCTechRestartExplorer}
         "WPFTCTechOpenAdapters" {Invoke-WPFTCTechOpenAdapters}
+        "WPFTCTechDarkMode" {Invoke-WPFTCTechDarkMode}
+        "WPFTCTechLightMode" {Invoke-WPFTCTechLightMode}
+        "WPFTCTechShowExtensions" {Invoke-WPFTCTechShowExtensions}
+        "WPFTCTechExplorerThisPC" {Invoke-WPFTCTechExplorerThisPC}
+        "WPFTCTechTaskbarLeft" {Invoke-WPFTCTechTaskbarLeft}
+        "WPFTCTechDisableWidgets" {Invoke-WPFTCTechDisableWidgets}
+        "WPFTCTechPowerBalanced" {Invoke-WPFTCTechPowerBalanced}
+        "WPFTCTechPowerHigh" {Invoke-WPFTCTechPowerHigh}
+        "WPFTCTechNoSleepAC" {Invoke-WPFTCTechNoSleepAC}
+        "WPFTCTechDisplay30" {Invoke-WPFTCTechDisplay30}
+        "WPFTCTechOpenPower" {Invoke-WPFTCTechOpenPower}
+        "WPFTCTechOpenPersonalization" {Invoke-WPFTCTechOpenPersonalization}
         "WPFselectedAppsButton" {$sync.selectedAppsPopup.IsOpen = -not $sync.selectedAppsPopup.IsOpen}
     }
 }

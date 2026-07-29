@@ -1,0 +1,20 @@
+TCTECH UTILITY - FIRST GITHUB PUBLISH
+=====================================
+
+Repository:
+https://github.com/jasonpsu97/TCTech-Utility
+
+1. Open the repository on GitHub.
+2. Upload the CONTENTS of this folder to the root of the main branch.
+   Do not upload the outer ZIP as the only file.
+3. Commit the files with this message:
+   Release TC Utility v1.2.0 GitHub-ready baseline
+4. Confirm that launch.ps1 is visible at the repository root.
+5. On a Windows test PC, open PowerShell and run:
+
+   irm https://raw.githubusercontent.com/jasonpsu97/TCTech-Utility/main/launch.ps1 | iex
+
+6. Approve the UAC prompt.
+
+If the repository is private, the raw download command will not work without authentication.
+The repository must be public for the simple one-line launcher to work anywhere.

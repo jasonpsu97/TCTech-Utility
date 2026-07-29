@@ -1,4 +1,4 @@
-
+﻿
 # Twisted Computing branded splash screen
 [void][System.Reflection.Assembly]::LoadWithPartialName('presentationframework')
 [void][System.Reflection.Assembly]::LoadWithPartialName('windowsbase')
@@ -70,27 +70,7 @@ try {
     Write-Host "Splash screen could not be displayed: $($_.Exception.Message)" -ForegroundColor DarkGray
 }
 
-Write-Host @"
-    CCCCCCCCCCCCCTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
- CCC::::::::::::CT:::::::::::::::::::::TT:::::::::::::::::::::T
-CC:::::::::::::::CT:::::::::::::::::::::TT:::::::::::::::::::::T
-C:::::CCCCCCCC::::CT:::::TT:::::::TT:::::TT:::::TT:::::::TT:::::T
-C:::::C       CCCCCCTTTTTT  T:::::T  TTTTTTTTTTTT  T:::::T  TTTTTT
-C:::::C                     T:::::T                T:::::T
-C:::::C                     T:::::T                T:::::T
-C:::::C                     T:::::T                T:::::T
-C:::::C                     T:::::T                T:::::T
-C:::::C                     T:::::T                T:::::T
-C:::::C                     T:::::T                T:::::T
-C:::::C       CCCCCC        T:::::T                T:::::T
-C:::::CCCCCCCC::::C      TT:::::::TT            TT:::::::TT
-CC:::::::::::::::C       T:::::::::T            T:::::::::T
-CCC::::::::::::C         T:::::::::T            T:::::::::T
-  CCCCCCCCCCCCC          TTTTTTTTTTT            TTTTTTTTTTT
-
-=== TWISTED COMPUTING ===
-====== TECH UTILITY ======
-"@
+Write-Host "Twisted Computing Tech Utility loaded." -ForegroundColor DarkGray
 
 # Load the configuration files
 
@@ -457,7 +437,28 @@ $sync["Form"].Add_Loaded({
 })
 
 $NavLogoPanel = $sync["Form"].FindName("NavLogoPanel")
-$NavLogoPanel.Children.Add((Invoke-WinUtilAssets -Type "logo" -Size 25)) | Out-Null
+try {
+    $tcLogoPath = Join-Path $PSScriptRoot 'assets\tctech-logo.png'
+    if (Test-Path -LiteralPath $tcLogoPath) {
+        $tcLogoBitmap = New-Object Windows.Media.Imaging.BitmapImage
+        $tcLogoBitmap.BeginInit()
+        $tcLogoBitmap.CacheOption = [Windows.Media.Imaging.BitmapCacheOption]::OnLoad
+        $tcLogoBitmap.UriSource = New-Object System.Uri($tcLogoPath, [System.UriKind]::Absolute)
+        $tcLogoBitmap.EndInit()
+        $tcLogoBitmap.Freeze()
+
+        $tcNavLogo = New-Object Windows.Controls.Image
+        $tcNavLogo.Width = 25
+        $tcNavLogo.Height = 25
+        $tcNavLogo.Stretch = 'Uniform'
+        $tcNavLogo.Source = $tcLogoBitmap
+        $NavLogoPanel.Children.Add($tcNavLogo) | Out-Null
+    } else {
+        $NavLogoPanel.Children.Add((Invoke-WinUtilAssets -Type "logo" -Size 25)) | Out-Null
+    }
+} catch {
+    $NavLogoPanel.Children.Add((Invoke-WinUtilAssets -Type "logo" -Size 25)) | Out-Null
+}
 Initialize-WinUtilTaskbarOverlayAssets -IncludeLogo $true -IncludeStatusAssets $false
 
 Set-WinUtilTaskbaritem -overlay "logo"
